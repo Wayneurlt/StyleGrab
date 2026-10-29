@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * StyleGrab visual language: black, white and gold, in light and dark themes.
+ * Theme colours are RGB triplets consumed by tailwind.config.ts (`rgb(var(--x) / alpha)`).
+ */
+@layer base {
+  :root {
+    --surface: 255 255 255;
+    --ink: 29 29 31;
+    --ink-soft: 51 51 54;
+    --ink-muted: 110 110 115;
+    --ink-faint: 161 161 166;
+    --sand-50: 250 250 250;
+    --sand-100: 245 245 247;
+    --sand-200: 230 230 232;
+    --sand-300: 210 210 215;
+    --sand-400: 168 168 172;
+    --sand-500: 128 128 132;
+    --sand-600: 92 92 96;
+    --sand-700: 64 64 68;
+    --sand-800: 38 38 40;
+    --sand-900: 17 17 18;
+    --accent-text: 138 106 23;
+    --accent-tint: 250 243 223;
+    --positive: 31 122 80;
+    --positive-tint: 226 244 234;
+    --negative: 194 59 59;
+    --negative-tint: 251 229 226;
+    --caution: 168 107 18;
+    --caution-tint: 251 240 216;
+    --info: 58 100 168;
+    --info-tint: 229 236 248;
+    color-scheme: light;
+  }
+  .dark {
+    --surface: 12 12 13;
+    --ink: 245 245 247;
+    --ink-soft: 220 220 224;
+    --ink-muted: 160 160 166;
+    --ink-faint: 110 110 115;
+    --sand-50: 20 20 22;
+    --sand-100: 28 28 30;
+    --sand-200: 44 44 46;
+    --sand-300: 64 64 68;
+    --sand-400: 92 92 96;
+    --sand-500: 128 128 132;
+    --sand-600: 168 168 172;
+    --sand-700: 210 210 215;
+    --sand-800: 230 230 232;
+    --sand-900: 245 245 247;
+    --accent-text: 228 194 90;
+    --accent-tint: 52 42 18;
+    --positive: 74 196 135;
+    --positive-tint: 18 52 36;
+    --negative: 240 110 110;
+    --negative-tint: 64 22 22;
+    --caution: 232 170 72;
+    --caution-tint: 60 42 14;
+    --info: 120 165 235;
+    --info-tint: 20 36 64;
+    color-scheme: dark;
+  }
+
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  html, body { overflow-x: clip; }
+  body { @apply min-h-screen bg-white font-sans text-ink transition-colors duration-300; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+  :focus-visible { outline: 2px solid #c29a36; outline-offset: 2px; border-radius: 10px; }
+  ::selection { background: #e4c25a66; }
+  input[type='number']::-webkit-inner-spin-button { opacity: 0.4; }
+  input[type='checkbox'], input[type='radio'] { accent-color: #c29a36; }
+}
+
+@layer components {
+  /* Page canvas with the faintest gold light in one corner. */
+  .sg-backdrop {
+    background: radial-gradient(50% 35% at 100% 0%, rgb(228 194 90 / 0.10) 0%, transparent 70%), rgb(var(--surface));
+    background-attachment: fixed;
+  }
+
+  /* Gold text with a slow metallic sheen. */
+  .text-gold {
+    background: linear-gradient(100deg, #8a6a17 0%, #c29a36 25%, #f1d77e 50%, #c29a36 75%, #8a6a17 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    @apply animate-shimmer;
+  }
+  .btn-gold { @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent-light px-7 font-medium text-coal shadow-gold transition hover:bg-accent; }
+  .btn-outline-light { @apply inline-flex items-center justify-center gap-2 rounded-full border border-chalk/40 px-7 font-medium text-chalk backdrop-blur-sm transition hover:border-accent-light hover:text-accent-light; }
+  .link-gold { @apply relative; }
+  .link-gold::after { content: ''; @apply absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300; }
+  .link-gold:hover::after, .link-gold.router-link-active::after { @apply scale-x-100; }
+
+  /* Surfaces */
+  .glass-shell { @apply relative rounded-4xl border border-glass-line bg-white/70 shadow-glass backdrop-blur-glass; }
+  .glass-card { @apply rounded-3xl border border-glass-line bg-white/85 shadow-card; }
+  .glass-inner { @apply rounded-2xl border border-sand-200/70 bg-white; }
+  .glass-pill { @apply rounded-full border border-glass-line bg-white/80 shadow-glass backdrop-blur-glass; }
+
+  /* Highlight card: black with a gold sheen (same in both themes). */
+  .accent-card {
+    /* Always dark: pin the theme's "white" to real white so `text-white` inside stays readable. */
+    --surface: 255 255 255;
+    @apply rounded-3xl border border-accent/40 text-chalk shadow-card;
+    background:
+      radial-gradient(120% 90% at 100% 0%, rgb(228 194 90 / 0.32) 0%, transparent 55%),
+      linear-gradient(150deg, #23201a 0%, #0b0b0c 100%);
+  }
+
+  .gold-rule { background: linear-gradient(90deg, transparent, #c29a36 20%, #e4c25a 50%, #c29a36 80%, transparent); height: 1px; }
+
+  /* Chart fills */
+  .hatch { background: repeating-linear-gradient(135deg, #c29a36 0 3px, #e4c25a 3px 6px); }
+  .hatch-ink { background: repeating-linear-gradient(135deg, rgb(var(--ink)) 0 3px, rgb(var(--ink-soft)) 3px 6px); }
+
+  /* Typography helpers */
+  .label { @apply text-[13px] font-medium text-ink-soft; }
+  .eyebrow { @apply text-xs font-medium uppercase tracking-wide text-ink-muted; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* Form controls */
+  .field { @apply h-11 w-full min-w-0 rounded-xl border border-sand-200 bg-white px-3.5 text-sm text-ink placeholder:text-ink-faint shadow-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20 disabled:opacity-60; }
+  textarea.field { @apply h-auto py-2.5; }
+  select.field { @apply pr-8; }
+
+  /* Tables: soft header band, rounded rows */
+  .sg-table { @apply w-full border-separate border-spacing-y-1 text-sm; }
+  .sg-table thead th { @apply bg-sand-100 px-4 py-3 text-left text-[13px] font-medium text-ink-muted first:rounded-l-xl last:rounded-r-xl; }
+  .sg-table tbody td { @apply bg-white/70 px-4 py-3 align-middle first:rounded-l-xl last:rounded-r-xl; }
+  .sg-table tbody tr { @apply transition; }
+  .sg-table tbody tr:hover td { @apply bg-accent-tint/60; }
+
+  .scrollbar-thin { scrollbar-width: thin; scrollbar-color: rgb(var(--ink) / 0.2) transparent; }
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+/* Gentler AOS travel than the library default (100px). */
+[data-aos='fade-up'] { transform: translate3d(0, 28px, 0); }
+[data-aos='fade-left'] { transform: translate3d(28px, 0, 0); }
+[data-aos='fade-right'] { transform: translate3d(-28px, 0, 0); }
+[data-aos][data-aos].aos-animate { transform: translate3d(0, 0, 0); }
+
+@media print {
+  .no-print { display: none !important; }
+  :root, .dark { --surface: 255 255 255; --ink: 0 0 0; }
+  body { background: #fff !important; }
+  .sg-backdrop { background: #fff !important; }
+  .sg-print-full { margin: 0 !important; padding: 0 !important; }
+}
