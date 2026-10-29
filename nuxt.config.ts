@@ -43,5 +43,11 @@ export default defineNuxtConfig({
   routeRules: {
     '/admin/**': { ssr: false },
   },
+  nitro: {
+    // Images committed in storage/uploads are published as static files at /media/<key>, so hosts that
+    // don't ship the project folder with the server (Vercel, Netlify…) still serve them from their CDN.
+    // Images uploaded later on a running server fall through to the /media/[key] route.
+    publicAssets: [{ dir: fileURLToPath(new URL('./storage/uploads', import.meta.url)), baseURL: '/media', maxAge: 60 * 60 * 24 * 365 }],
+  },
   eslint: { config: { stylistic: false } },
 })
