@@ -1,0 +1,52 @@
+{
+  "name": "stylegrab",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "StyleGrab — e-commerce storefront, POS and inventory management platform",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "node .output/server/index.mjs",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare && prisma generate",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio"
+  },
+  "dependencies": {
+    "@node-rs/argon2": "^2.0.2",
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@pinia/nuxt": "^0.11.2",
+    "@prisma/client": "6.19.3",
+    "aos": "^2.3.4",
+    "h3": "^1.15.11",
+    "html-to-image": "^1.11.11",
+    "lucide-vue-next": "^1.0.0",
+    "nuxt": "3.21.11",
+    "papaparse": "^5.5.3",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.22",
+    "vue-router": "^4.6.3",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.10.0",
+    "@types/aos": "^3.0.8",
+    "@types/papaparse": "^5.3.16",
+    "eslint": "^9.38.0",
+    "prisma": "6.19.3",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.1.1"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}
