@@ -44,7 +44,7 @@ API requests and unhandled errors are written to stdout as JSON lines (no secret
 pg_dump "$DIRECT_DATABASE_URL" --format=custom --no-owner --file="stylegrab-$(date +%F).dump"
 ```
 
-Back up `UPLOAD_DIR` (product images) on the same schedule, e.g. `tar czf uploads-$(date +%F).tgz storage/uploads` or bucket versioning.
+Back up `UPLOAD_DIR` (product images) on the same schedule, e.g. `tar czf uploads-$(date +%F).tgz storage/uploads` or bucket versioning. `storage/uploads/` is also committed to git, so images uploaded before a commit are restored by a fresh clone — but images uploaded on a live server afterwards are only on that server until they are backed up (or committed).
 
 ## Restore
 

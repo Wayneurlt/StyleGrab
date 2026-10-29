@@ -6,8 +6,8 @@ node_modules
 .cache
 dist
 coverage
-storage/uploads/*
-!storage/uploads/.gitkeep
+# storage/uploads holds the product and category images the site serves (/media/<key>).
+# It is committed so a fresh clone or deploy shows the same pictures the database references.
 .env
 .env.*
 !.env.example
