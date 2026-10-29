@@ -87,7 +87,7 @@ useHead({
     <!-- Footer -->
     <footer class="mt-24 bg-sand-100 text-[12px] text-ink-muted">
       <div class="mx-auto max-w-[1200px] px-5 py-12">
-        <div class="grid gap-10 border-b border-ink/10 pb-10 sm:grid-cols-3">
+        <div class="grid grid-cols-1 gap-10 border-b border-ink/10 pb-10 sm:grid-cols-3">
           <div>
             <UiLogo :alt="name" class="h-10" />
             <p class="mt-4 max-w-xs leading-relaxed">Scarves, belts, bags and shoes, chosen to finish the look.</p>

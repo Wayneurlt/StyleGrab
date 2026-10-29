@@ -43,10 +43,10 @@ const { data: activity, status: activityState } = useFetch('/api/admin/orders', 
     </header>
 
     <UiErrorState v-if="error" :error="error" @retry="refresh()" />
-    <div v-else-if="status === 'pending' && !data" class="grid gap-5 lg:grid-cols-3"><UiSkeleton v-for="i in 3" :key="i" :rows="1" height="h-72" /></div>
+    <div v-else-if="status === 'pending' && !data" class="grid grid-cols-1 gap-5 lg:grid-cols-3"><UiSkeleton v-for="i in 3" :key="i" :rows="1" height="h-72" /></div>
 
     <div v-else-if="data" class="space-y-5">
-      <div class="grid gap-5 xl:grid-cols-[1fr_1fr_1fr]">
+      <div class="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_1fr_1fr]">
         <!-- Sales this month (reference: Total Balance + Wallets) -->
         <section class="glass-card flex flex-col p-5">
           <div class="flex items-start justify-between">
@@ -81,22 +81,22 @@ const { data: activity, status: activityState } = useFetch('/api/admin/orders', 
         <section class="glass-card grid grid-cols-2 gap-3 p-3">
           <div class="accent-card flex flex-col justify-between p-4">
             <div class="flex items-start justify-between"><span class="text-[13px] text-white/90">Sales today</span><span class="flex size-7 items-center justify-center rounded-full bg-white/25"><Receipt class="size-3.5" /></span></div>
-            <p class="num mt-6 text-[1.7rem] font-semibold">{{ money(data.salesToday.net, true) }}</p>
+            <p class="num mt-6 text-[1.35rem] font-semibold sm:text-[1.7rem]">{{ money(data.salesToday.net, true) }}</p>
             <p class="mt-3 text-[11px] text-white/85"><span class="rounded-md bg-white/20 px-1.5 py-0.5 font-semibold">{{ data.salesToday.count }}</span> completed today</p>
           </div>
           <div class="rounded-3xl border border-sand-200 bg-sand-50 p-4">
             <div class="flex items-start justify-between"><span class="text-[13px] text-ink-soft">Orders</span><span class="flex size-7 items-center justify-center rounded-full bg-white shadow-lift"><Boxes class="size-3.5" /></span></div>
-            <p class="num mt-6 text-[1.7rem] font-semibold">{{ data.ordersPeriod }}</p>
+            <p class="num mt-6 text-[1.35rem] font-semibold sm:text-[1.7rem]">{{ data.ordersPeriod }}</p>
             <p class="mt-3 text-[11px] text-ink-muted"><span class="rounded-md bg-caution-tint px-1.5 py-0.5 font-semibold text-caution">{{ data.openOrders }}</span> open now</p>
           </div>
           <NuxtLink to="/admin/orders?paymentStatus=UNPAID" class="rounded-3xl border border-sand-200 bg-sand-50 p-4 transition hover:bg-sand-100">
             <div class="flex items-start justify-between"><span class="text-[13px] text-ink-soft">Outstanding</span><span class="flex size-7 items-center justify-center rounded-full bg-white shadow-lift"><CircleDollarSign class="size-3.5" /></span></div>
-            <p class="num mt-6 text-[1.7rem] font-semibold">{{ money(data.outstanding.amount, true) }}</p>
+            <p class="num mt-6 text-[1.35rem] font-semibold sm:text-[1.7rem]">{{ money(data.outstanding.amount, true) }}</p>
             <p class="mt-3 text-[11px] text-ink-muted"><span class="rounded-md bg-negative-tint px-1.5 py-0.5 font-semibold text-negative">{{ data.outstanding.orders }}</span> orders with a balance</p>
           </NuxtLink>
           <NuxtLink to="/admin/payments?status=PENDING_CONFIRMATION" class="rounded-3xl border border-sand-200 bg-sand-50 p-4 transition hover:bg-sand-100">
             <div class="flex items-start justify-between"><span class="text-[13px] text-ink-soft">To verify</span><span class="flex size-7 items-center justify-center rounded-full bg-white shadow-lift"><Smartphone class="size-3.5" /></span></div>
-            <p class="num mt-6 text-[1.7rem] font-semibold">{{ money(data.pendingPayments.amount, true) }}</p>
+            <p class="num mt-6 text-[1.35rem] font-semibold sm:text-[1.7rem]">{{ money(data.pendingPayments.amount, true) }}</p>
             <p class="mt-3 text-[11px] text-ink-muted"><span class="rounded-md bg-caution-tint px-1.5 py-0.5 font-semibold text-caution">{{ data.pendingPayments.count }}</span> payments awaiting</p>
           </NuxtLink>
         </section>
@@ -109,7 +109,7 @@ const { data: activity, status: activityState } = useFetch('/api/admin/orders', 
         </section>
       </div>
 
-      <div class="grid gap-5 xl:grid-cols-[1fr_2fr]">
+      <div class="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_2fr]">
         <div class="space-y-5">
           <!-- Collection progress (reference: Monthly Spending Limit) -->
           <section class="glass-card p-5">
@@ -196,7 +196,7 @@ const { data: activity, status: activityState } = useFetch('/api/admin/orders', 
 
       <section v-if="data.bestSellers.length" class="glass-card p-5">
         <h2 class="mb-3 text-[15px] font-medium">Best sellers this month</h2>
-        <ol class="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+        <ol class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-5">
           <li v-for="(b, i) in data.bestSellers" :key="b.productId" class="rounded-2xl bg-sand-50 p-3">
             <p class="text-xs text-ink-muted">#{{ i + 1 }}</p>
             <p class="truncate font-medium">{{ b.name }}</p>

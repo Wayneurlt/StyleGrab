@@ -63,7 +63,7 @@ function fixAll() {
     <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Your cart</h1>
     <ClientOnly>
       <div v-if="!cart.lines.length" class="mt-6"><UiEmpty title="Your cart is empty" message="Find something you love in the shop."><UiButton to="/shop">Start shopping</UiButton></UiEmpty></div>
-      <div v-else class="mt-6 grid gap-6 lg:grid-cols-[1fr_340px]">
+      <div v-else class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
         <ul class="space-y-3">
           <li v-for="l in cart.lines" :key="l.variantId" class="glass-card flex gap-4 p-3">
             <NuxtLink :to="`/products/${l.slug}`" class="w-24 shrink-0"><UiProductImage :image-key="l.imageKey" :alt="l.productName" aspect="aspect-[4/5]" rounded="rounded-xl" /></NuxtLink>

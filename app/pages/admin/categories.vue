@@ -144,7 +144,7 @@ const parentChoices = computed(() => (data.value ?? []).filter(c => !c.isArchive
 
     <UiModal v-model:open="editOpen" :title="editing ? `Edit ${editing.name}` : 'New category'">
       <form id="cat-form" class="space-y-4" @submit.prevent="saveCategory">
-        <div class="grid gap-4 sm:grid-cols-[2fr_1fr]">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-[2fr_1fr]">
           <UiField id="c-name" label="Name" required><input id="c-name" v-model="form.name" class="field" maxlength="80" required></UiField>
           <UiField id="c-code" label="Code" required hint="Used in SKUs, e.g. SC"><input id="c-code" v-model="form.code" class="field uppercase" maxlength="6" pattern="[A-Za-z0-9]+" required></UiField>
         </div>
@@ -165,7 +165,7 @@ const parentChoices = computed(() => (data.value ?? []).filter(c => !c.isArchive
 
     <UiModal v-model:open="attrOpen" :title="`Attributes — ${attrCat?.name ?? ''}`" description="Variants of products in this category (and its subcategories) use these attributes. Leave options empty for free text." size="lg">
       <div class="space-y-2">
-        <div v-for="(a, i) in attrRows" :key="i" class="grid gap-2 rounded-2xl bg-sand-50 p-3 sm:grid-cols-[1fr_1fr_2fr_auto_auto] sm:items-end">
+        <div v-for="(a, i) in attrRows" :key="i" class="grid grid-cols-1 gap-2 rounded-2xl bg-sand-50 p-3 sm:grid-cols-[1fr_1fr_2fr_auto_auto] sm:items-end">
           <UiField :id="`a-name-${i}`" label="Name"><input :id="`a-name-${i}`" v-model="a.name" class="field h-9" maxlength="40" @blur="autoCode(a)"></UiField>
           <UiField :id="`a-code-${i}`" label="Code"><input :id="`a-code-${i}`" v-model="a.code" class="field h-9 font-mono text-xs" maxlength="30"></UiField>
           <UiField :id="`a-opt-${i}`" label="Options (comma separated)"><input :id="`a-opt-${i}`" v-model="a.options" class="field h-9" placeholder="e.g. Silk, Cotton, Satin"></UiField>

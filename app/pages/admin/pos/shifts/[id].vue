@@ -53,7 +53,7 @@ async function closeShift() {
 
     <UiErrorState v-if="error" :error="error" @retry="refresh()" />
     <UiSkeleton v-else-if="status === 'pending' && !data" :rows="3" height="h-32" />
-    <div v-else-if="data" class="grid gap-5 lg:grid-cols-[1.2fr_1fr]">
+    <div v-else-if="data" class="grid grid-cols-1 gap-5 lg:grid-cols-[1.2fr_1fr]">
       <div class="space-y-5">
         <section class="glass-card p-5">
           <div class="mb-4 flex items-center justify-between">

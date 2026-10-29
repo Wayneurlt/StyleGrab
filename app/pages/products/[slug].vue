@@ -119,7 +119,7 @@ useHead(() => ({
       <span class="mx-1.5">›</span><NuxtLink :to="`/shop/${p.category.slug}`" class="hover:text-ink">{{ p.category.name }}</NuxtLink>
     </nav>
 
-    <div class="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
       <!-- Gallery -->
       <div class="lg:sticky lg:top-28 lg:self-start" data-aos="fade-right">
         <div class="flex gap-4">
@@ -214,7 +214,7 @@ useHead(() => ({
         </div>
         <NuxtLink v-if="cart.count" to="/cart" class="link-gold mt-4 self-start text-sm font-medium">View cart &amp; check out →</NuxtLink>
 
-        <ul class="mt-8 grid gap-3 rounded-2xl bg-sand-100 p-5 text-[13px] text-ink-soft sm:grid-cols-3">
+        <ul class="mt-8 grid grid-cols-1 gap-3 rounded-2xl bg-sand-100 p-5 text-[13px] text-ink-soft sm:grid-cols-3">
           <li class="flex items-center gap-2"><PackageCheck class="size-4 shrink-0 text-accent" />Reserved when you order</li>
           <li class="flex items-center gap-2"><Wallet class="size-4 shrink-0 text-accent" />M-Pesa, bank or cash</li>
           <li class="flex items-center gap-2"><RotateCcw class="size-4 shrink-0 text-accent" />Easy returns</li>

@@ -166,9 +166,9 @@ function submit() {
 
 <template>
   <form class="space-y-5" novalidate @submit.prevent="submit">
-    <div class="grid gap-5 xl:grid-cols-[2fr_1fr]">
+    <div class="grid grid-cols-1 gap-5 xl:grid-cols-[2fr_1fr]">
       <UiCard title="Details">
-        <div class="grid gap-4 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <UiField id="p-name" label="Product name" required class="sm:col-span-2">
             <input id="p-name" v-model="form.name" class="field" maxlength="150" required>
           </UiField>
@@ -271,7 +271,7 @@ function submit() {
     </UiCard>
 
     <UiCard title="Search engine listing">
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <UiField id="p-seo-title" label="Page title" :hint="`${form.seoTitle.length}/70`">
           <input id="p-seo-title" v-model="form.seoTitle" class="field" maxlength="70" :placeholder="form.name">
         </UiField>

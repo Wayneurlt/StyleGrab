@@ -69,7 +69,7 @@ async function setStatus(to: 'ORDERED' | 'RECEIVED' | 'CANCELLED') {
       <PurchasingPurchaseOrderForm v-if="editing && initial" :initial="initial" submit-label="Save changes" :pending="pending" @submit="save" />
 
       <div v-else class="space-y-5">
-        <div class="grid gap-4 sm:grid-cols-3">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div class="accent-card p-5"><p class="text-[13px] text-white/90">Order value</p><p class="num mt-3 text-2xl font-semibold">{{ money(totals.value) }}</p></div>
           <div class="glass-card p-5"><p class="text-[13px] text-ink-soft">Units received</p><p class="num mt-3 text-2xl font-semibold">{{ totals.received }} <span class="text-base font-normal text-ink-muted">/ {{ totals.ordered }}</span></p></div>
           <div class="glass-card p-5"><p class="text-[13px] text-ink-soft">Supplier</p><p class="mt-3 font-semibold">{{ po.supplier.name }}</p><p class="text-xs text-ink-muted">{{ [po.supplier.contactPerson, po.supplier.phone, po.supplier.email].filter(Boolean).join(' · ') || 'No contact details' }}</p></div>

@@ -91,7 +91,7 @@ async function toggle(s: Supplier) {
     </UiCard>
 
     <UiModal v-model:open="open" :title="editingId ? 'Edit supplier' : 'Add supplier'" size="lg">
-      <form id="supplier-form" class="grid gap-4 sm:grid-cols-2" novalidate @submit.prevent="save">
+      <form id="supplier-form" class="grid grid-cols-1 gap-4 sm:grid-cols-2" novalidate @submit.prevent="save">
         <UiField id="sup-name" label="Name" required class="sm:col-span-2"><input id="sup-name" v-model="form.name" class="field" maxlength="120"></UiField>
         <UiField id="sup-contact" label="Contact person"><input id="sup-contact" v-model="form.contactPerson" class="field" maxlength="120"></UiField>
         <UiField id="sup-phone" label="Phone"><input id="sup-phone" v-model="form.phone" type="tel" class="field" maxlength="30"></UiField>

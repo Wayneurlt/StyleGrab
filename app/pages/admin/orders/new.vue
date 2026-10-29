@@ -66,7 +66,7 @@ async function submit() {
   <div>
     <UiPageHeader title="New manual order" subtitle="For customers who order through WhatsApp, Instagram, Facebook or by phone. Stock is reserved immediately." :crumbs="[{ label: 'Orders', to: '/admin/orders' }, { label: 'New manual order' }]" />
 
-    <form class="grid gap-5 xl:grid-cols-[1.4fr_1fr]" @submit.prevent="submit">
+    <form class="grid grid-cols-1 gap-5 xl:grid-cols-[1.4fr_1fr]" @submit.prevent="submit">
       <div class="space-y-5">
         <UiCard title="Channel & customer">
           <div class="space-y-4">
@@ -74,7 +74,7 @@ async function submit() {
               <button v-for="c in MANUAL_CHANNELS" :key="c" type="button" role="radio" :aria-checked="channel === c" class="h-10 rounded-full px-5 text-sm font-medium transition" :class="channel === c ? 'bg-ink text-white shadow-pill' : 'bg-sand-50 hover:bg-white'" @click="channel = c">{{ CHANNEL_LABELS[c] }}</button>
             </div>
             <SalesCustomerPicker v-model="customer" empty-label="New or existing customer" />
-            <div v-if="!customer" class="grid gap-3 sm:grid-cols-2">
+            <div v-if="!customer" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <p class="text-xs text-ink-muted sm:col-span-2">Or enter contact details — an existing customer with the same phone/email is reused automatically.</p>
               <UiField id="c-name" label="Name"><input id="c-name" v-model="contact.name" class="field" maxlength="120"></UiField>
               <UiField id="c-phone" label="Phone"><input id="c-phone" v-model="contact.phone" class="field" type="tel" maxlength="30"></UiField>
@@ -92,7 +92,7 @@ async function submit() {
         </UiCard>
 
         <UiCard title="Fulfilment & notes">
-          <div class="grid gap-3 sm:grid-cols-2">
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <UiField id="f-type" label="Fulfilment">
               <select id="f-type" v-model="fulfilmentType" class="field">
                 <option value="PICKUP">Customer pickup</option>

@@ -43,11 +43,11 @@ async function toggleActive() {
         <UiButton v-if="can('orders.manage') && c.isActive" to="/admin/orders/new">New order</UiButton>
       </UiPageHeader>
 
-      <div class="grid gap-5 xl:grid-cols-[1fr_1.6fr]">
-        <div class="space-y-5">
+      <div class="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_1.6fr]">
+        <div class="min-w-0 space-y-5">
           <div class="grid grid-cols-2 gap-3">
-            <div class="accent-card p-4"><p class="text-[13px] text-white/85">Total purchases</p><p class="num mt-4 text-2xl font-semibold">{{ money(c.totalPurchases) }}</p></div>
-            <div class="rounded-3xl border border-sand-200 bg-sand-50 p-4"><p class="text-[13px] text-ink-soft">Outstanding</p><p class="num mt-4 text-2xl font-semibold" :class="c.outstanding > 0 ? 'text-negative' : ''">{{ money(c.outstanding) }}</p></div>
+            <div class="accent-card p-4"><p class="text-[13px] text-white/85">Total purchases</p><p class="num mt-4 break-words text-xl font-semibold sm:text-2xl">{{ money(c.totalPurchases) }}</p></div>
+            <div class="rounded-3xl border border-sand-200 bg-sand-50 p-4"><p class="text-[13px] text-ink-soft">Outstanding</p><p class="num mt-4 break-words text-xl font-semibold sm:text-2xl" :class="c.outstanding > 0 ? 'text-negative' : ''">{{ money(c.outstanding) }}</p></div>
           </div>
           <UiCard title="Profile">
             <form class="space-y-3" @submit.prevent="save">

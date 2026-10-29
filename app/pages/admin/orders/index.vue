@@ -49,7 +49,7 @@ function clear() {
     </div>
 
     <UiCard :padded="false">
-      <div class="grid gap-2 p-4 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6">
+      <div class="grid grid-cols-1 gap-2 p-4 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6">
         <UiSearchInput v-model="filters.q" placeholder="Order #, customer, phone, SKU" class="lg:col-span-2" />
         <select v-model="filters.channel" class="field h-10 rounded-full" aria-label="Channel">
           <option value="">All channels</option>

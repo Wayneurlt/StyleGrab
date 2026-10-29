@@ -113,7 +113,7 @@ const statusLabel = (s: string) => ({ IN_PROGRESS: 'In progress', SUBMITTED: 'Su
         <UiButton v-if="(st.status === 'IN_PROGRESS' || st.status === 'SUBMITTED') && can('inventory.stocktake')" variant="ghost" @click="act('cancel')">Cancel count</UiButton>
       </UiPageHeader>
 
-      <div class="mb-5 grid gap-3 sm:grid-cols-3">
+      <div class="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <div class="glass-card p-4"><p class="text-[13px] text-ink-soft">Lines counted</p><p class="num mt-1 text-2xl font-semibold">{{ stats.counted }} <span class="text-base text-ink-muted">/ {{ stats.total }}</span></p></div>
         <div class="glass-card p-4"><p class="text-[13px] text-ink-soft">Discrepancies</p><p class="num mt-1 text-2xl font-semibold" :class="stats.diffs ? 'text-caution' : ''">{{ stats.diffs }}</p></div>
         <div class="glass-card p-4"><p class="text-[13px] text-ink-soft">Status</p><p class="mt-1 text-lg font-semibold">{{ statusLabel(st.status) }}</p><p v-if="st.status === 'SUBMITTED' && !can('inventory.stocktake.finalize')" class="text-xs text-ink-muted">A manager will review and finalize.</p></div>

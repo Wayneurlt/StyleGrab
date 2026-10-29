@@ -77,7 +77,7 @@ defineExpose({ missingRef, totalChange })
   <div class="space-y-2">
     <div v-for="x in computedRows" :key="x.row.key" class="rounded-2xl border border-sand-200 bg-sand-50 p-3">
       <div class="flex items-start gap-2">
-        <div class="grid flex-1 gap-2 sm:grid-cols-2">
+        <div class="grid grid-cols-1 flex-1 gap-2 sm:grid-cols-2">
           <div>
             <label :for="`pm-${x.row.key}`" class="sr-only">Payment method</label>
             <select :id="`pm-${x.row.key}`" v-model="x.row.methodId" class="field">

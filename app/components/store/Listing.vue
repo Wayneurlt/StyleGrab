@@ -69,7 +69,7 @@ const activeFilterCount = computed(() => Object.keys(query.value).filter(k => k.
       <p v-if="data?.category?.description" class="mx-auto mt-4 max-w-2xl animate-fade-up text-[19px] text-ink-muted" style="animation-delay: 100ms">{{ data.category.description }}</p>
     </div>
 
-    <div class="mx-auto grid max-w-[1200px] gap-8 px-5 pt-8 lg:grid-cols-[230px_1fr]">
+    <div class="mx-auto grid grid-cols-1 max-w-[1200px] gap-8 px-5 pt-8 lg:grid-cols-[230px_1fr]">
       <!-- Filters -->
       <aside class="lg:block" :class="filtersOpen ? 'block' : 'hidden'" aria-label="Filters">
         <div class="space-y-7 rounded-3xl bg-sand-100 p-6 lg:sticky lg:top-24">

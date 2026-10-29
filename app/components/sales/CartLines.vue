@@ -119,7 +119,7 @@ const canAdjust = computed(() => props.allowDiscount || props.allowOverride)
         <UiIconButton v-if="canAdjust" :icon="SlidersHorizontal" :label="`Adjust price or discount for ${l.productName}`" size="sm" :active="expanded === l.key" @click="expanded = expanded === l.key ? null : l.key" />
         <UiIconButton :icon="Trash2" :label="`Remove ${l.productName}`" size="sm" @click="remove(l)" />
       </div>
-      <div v-if="expanded === l.key" class="mt-3 grid gap-3 border-t border-sand-200 pt-3 sm:grid-cols-2">
+      <div v-if="expanded === l.key" class="mt-3 grid grid-cols-1 gap-3 border-t border-sand-200 pt-3 sm:grid-cols-2">
         <UiField v-if="allowOverride" :id="`price-${l.key}`" label="Unit price" :hint="`Catalogue price ${money(l.price)}`">
           <UiMoneyInput :id="`price-${l.key}`" :model-value="l.unitPrice ?? l.price" @update:model-value="(v) => (l.unitPrice = v === l.price ? null : v)" />
         </UiField>

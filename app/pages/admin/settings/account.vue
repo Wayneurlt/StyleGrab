@@ -25,7 +25,7 @@ async function submit() {
 <template>
   <div>
     <UiPageHeader title="My account" :crumbs="[{ label: 'Settings', to: '/admin/settings' }, { label: 'My account' }]" />
-    <div class="grid gap-5 lg:grid-cols-2">
+    <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
       <UiCard title="Profile">
         <dl v-if="me" class="space-y-3 text-sm">
           <div class="flex justify-between gap-4"><dt class="text-ink-muted">Name</dt><dd class="font-medium">{{ me.name }}</dd></div>

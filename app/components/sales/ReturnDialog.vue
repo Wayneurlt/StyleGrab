@@ -134,7 +134,7 @@ async function submit() {
         <p class="mt-2 text-xs text-ink-muted">Only “saleable” items go back into sellable stock. “Needs inspection” items can be restocked or written off later.</p>
       </section>
 
-      <div class="grid gap-3 sm:grid-cols-2">
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <UiField id="rt-reason" label="Reason" required><input id="rt-reason" v-model="reason" class="field" maxlength="500" placeholder="e.g. Wrong size"></UiField>
         <UiField id="rt-notes" label="Notes"><input id="rt-notes" v-model="notes" class="field" maxlength="1000"></UiField>
       </div>
@@ -159,7 +159,7 @@ async function submit() {
         <SalesPaymentRows v-if="exchangeDue > 0" v-model:payments="exchangePayments" :methods="methods" :due="exchangeDue" />
       </section>
 
-      <section v-if="resolution !== 'NO_REFUND' && refundMax > 0" class="grid gap-3 sm:grid-cols-3">
+      <section v-if="resolution !== 'NO_REFUND' && refundMax > 0" class="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <UiField id="rf-method" label="Refund method">
           <select id="rf-method" v-model="refund.methodId" class="field">
             <option v-for="m in usable" :key="m.id" :value="m.id">{{ m.name }}</option>

@@ -138,6 +138,43 @@
   .sg-table tbody tr { @apply transition; }
   .sg-table tbody tr:hover td { @apply bg-accent-tint/60; }
 
+  /*
+   * Phones: each row becomes a card. The first cell is the card title; every other cell shows its
+   * column heading (data-label, filled in by plugins/table-labels.client.ts) on the left and its value on
+   * the right. Add `sg-table-keep` to a table that should keep scrolling sideways instead.
+   */
+  @media (max-width: 639px) {
+    .sg-table:not(.sg-table-keep) { @apply block min-w-0 border-spacing-0; min-width: 0 !important; }
+    .sg-table:not(.sg-table-keep) thead { @apply sr-only; }
+    .sg-table:not(.sg-table-keep) > tbody,
+    .sg-table:not(.sg-table-keep) > tfoot { @apply block space-y-2; }
+    .sg-table:not(.sg-table-keep) > tfoot { @apply mt-2; }
+    .sg-table:not(.sg-table-keep) tr { @apply block rounded-2xl border border-sand-200 bg-white px-3.5 py-2 shadow-sm; }
+    .sg-table:not(.sg-table-keep) tbody tr:hover td { @apply bg-transparent; }
+    .sg-table:not(.sg-table-keep) tr > td,
+    .sg-table:not(.sg-table-keep) tr > th {
+      @apply relative block min-w-0 rounded-none bg-transparent px-0 py-1.5 text-right;
+      padding-left: 42%;
+      overflow-wrap: anywhere;
+    }
+    .sg-table:not(.sg-table-keep) tr > td::before,
+    .sg-table:not(.sg-table-keep) tr > th::before {
+      content: attr(data-label);
+      @apply absolute left-0 top-1.5 w-[40%] pr-2 text-left text-xs font-normal text-ink-muted;
+    }
+    /* Title cell, and cells without a heading (actions, colspans, empty states). */
+    .sg-table:not(.sg-table-keep) tr > :first-child,
+    .sg-table:not(.sg-table-keep) tr > :not([data-label]) { padding-left: 0; }
+    .sg-table:not(.sg-table-keep) tr > :first-child::before,
+    .sg-table:not(.sg-table-keep) tr > :not([data-label])::before { content: none; }
+    .sg-table:not(.sg-table-keep) tbody tr > :first-child:not(:only-child) { @apply mb-1 border-b border-sand-200 pb-2 text-left font-medium; }
+    .sg-table:not(.sg-table-keep) tr > :only-child { @apply text-center; }
+    .sg-table:not(.sg-table-keep) tr > td .field { @apply w-full; }
+    /* Values wrapped in their own flex row line up on the right like plain text. */
+    .sg-table:not(.sg-table-keep) tbody tr > td[data-label] > .flex:not(.flex-col) { @apply justify-end; }
+    .sg-table:not(.sg-table-keep) tbody tr > td[data-label] > .flex-col { @apply items-end; }
+  }
+
   .scrollbar-thin { scrollbar-width: thin; scrollbar-color: rgb(var(--ink) / 0.2) transparent; }
   .scrollbar-none { scrollbar-width: none; }
   .scrollbar-none::-webkit-scrollbar { display: none; }

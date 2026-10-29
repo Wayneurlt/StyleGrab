@@ -67,7 +67,7 @@ const pretty = (v: unknown) => JSON.stringify(v, null, 2)
                 </tr>
                 <tr v-if="expanded.has(e.id)">
                   <td colspan="6">
-                    <div class="grid gap-3 md:grid-cols-2">
+                    <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
                       <div><p class="eyebrow mb-1">Before</p><pre class="max-h-64 overflow-auto rounded-xl bg-white/80 p-3 text-xs">{{ e.before ? pretty(e.before) : '—' }}</pre></div>
                       <div><p class="eyebrow mb-1">After</p><pre class="max-h-64 overflow-auto rounded-xl bg-white/80 p-3 text-xs">{{ e.after ? pretty(e.after) : '—' }}</pre></div>
                     </div>

@@ -52,7 +52,7 @@ async function voidIt(p: { id: string, amount: number }) {
     <UiPageHeader title="Payments" subtitle="Payments recorded by staff. M-Pesa and bank references stay “awaiting confirmation” until checked against the statement." :crumbs="[{ label: 'Orders', to: '/admin/orders' }, { label: 'Payments' }]" />
     <UiTabs v-model="statusFilter" :tabs="tabs" label="Payment status" class="mb-4" />
     <UiCard :padded="false">
-      <div class="grid gap-2 p-4 sm:grid-cols-[2fr_1fr]">
+      <div class="grid grid-cols-1 gap-2 p-4 sm:grid-cols-[2fr_1fr]">
         <UiSearchInput v-model="q" placeholder="Reference or order number" />
         <select v-model="methodId" class="field h-10 rounded-full" aria-label="Payment method">
           <option value="">All methods</option>

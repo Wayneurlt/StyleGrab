@@ -112,7 +112,7 @@ async function submit() {
     <UiPageHeader title="Receive stock" :crumbs="[{ label: 'Inventory', to: '/admin/inventory' }, { label: 'Receiving', to: '/admin/inventory/receiving' }, { label: 'New' }]" />
     <form class="space-y-5" novalidate @submit.prevent="submit">
       <UiCard title="Delivery">
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <UiField id="r-po" label="Purchase order" hint="Optional — prefills outstanding items">
             <select id="r-po" v-model="poId" class="field">
               <option value="">No purchase order</option>

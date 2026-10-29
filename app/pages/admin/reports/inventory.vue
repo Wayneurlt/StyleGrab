@@ -30,7 +30,7 @@ const { data, error, status, refresh } = useFetch<Awaited<ReturnType<typeof inve
         <ReportsTile label="Missing cost" :value="String(data.valuation.missingCost)" hint="Variants in stock with no cost — valued at 0" />
       </div>
 
-      <div class="grid gap-5 lg:grid-cols-2">
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <UiCard title="Value by category" subtitle="Current">
           <UiEmpty v-if="!data.byCategory.length" title="No stock" />
           <table v-else class="sg-table">

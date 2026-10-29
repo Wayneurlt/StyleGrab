@@ -51,7 +51,7 @@ async function save() {
     <form v-else-if="form" class="space-y-5" novalidate @submit.prevent="save">
       <fieldset :disabled="!can('settings.manage')" class="space-y-5">
         <UiCard title="Business">
-          <div class="grid gap-4 md:grid-cols-2">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <UiField id="s-name" label="Business name" required><input id="s-name" v-model="form.businessName" class="field" maxlength="80"></UiField>
             <UiField id="s-phone" label="Contact phone"><input id="s-phone" v-model="form.contactPhone" type="tel" class="field" maxlength="40"></UiField>
             <UiField id="s-email" label="Contact email"><input id="s-email" v-model="form.contactEmail" type="email" class="field" maxlength="120"></UiField>
@@ -69,14 +69,14 @@ async function save() {
         </UiCard>
 
         <UiCard title="Receipts and policies">
-          <div class="grid gap-4 md:grid-cols-2">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <UiField id="s-footer" label="Receipt footer"><textarea id="s-footer" v-model="form.receiptFooter" rows="3" class="field" maxlength="500" /></UiField>
             <UiField id="s-policy" label="Return policy" hint="Printed on receipts and shown on the storefront."><textarea id="s-policy" v-model="form.returnPolicy" rows="3" class="field" maxlength="1000" /></UiField>
           </div>
         </UiCard>
 
         <UiCard title="Controls">
-          <div class="grid gap-4 md:grid-cols-2">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <UiField id="s-disc" label="Discount limit without manager override (%)" hint="Cashiers with the discount permission can discount up to this share of a sale.">
               <input id="s-disc" v-model="discountPct" type="number" min="0" max="100" step="0.5" class="field num">
             </UiField>

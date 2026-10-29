@@ -68,17 +68,17 @@ async function placeOrder() {
     <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Checkout</h1>
     <p class="mt-1 text-sm text-ink-soft">No account needed — we'll use your phone number to keep you updated.</p>
     <ClientOnly>
-      <form class="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]" novalidate @submit.prevent="placeOrder">
+      <form class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]" novalidate @submit.prevent="placeOrder">
         <div class="glass-card space-y-5 p-5 sm:p-6">
           <h2 class="font-medium">Your details</h2>
-          <div class="grid gap-4 sm:grid-cols-2">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <UiField id="name" label="Full name" :error="errors.name" required><input id="name" v-model="form.name" autocomplete="name" class="field" :aria-invalid="!!errors.name"></UiField>
             <UiField id="phone" label="Phone (WhatsApp preferred)" :error="errors.phone" required><input id="phone" v-model="form.phone" type="tel" autocomplete="tel" class="field" :aria-invalid="!!errors.phone"></UiField>
             <UiField id="email" label="Email (optional)" :error="errors.email" hint="For your order confirmation" class="sm:col-span-2"><input id="email" v-model="form.email" type="email" autocomplete="email" class="field"></UiField>
           </div>
           <fieldset>
             <legend class="label mb-2">How would you like to receive your order?</legend>
-            <div class="grid gap-2 sm:grid-cols-2">
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
               <label v-for="opt in [{ v: 'PICKUP', t: 'Pick up in store', d: 'We will message you when it is ready' }, { v: 'DELIVERY', t: 'Delivery', d: 'Delivery is arranged and priced by our team' }]" :key="opt.v" class="flex cursor-pointer gap-3 rounded-2xl border p-3 transition" :class="form.fulfilmentType === opt.v ? 'border-ink bg-white/80' : 'border-sand-200 bg-sand-50'">
                 <input v-model="form.fulfilmentType" type="radio" name="fulfilment" :value="opt.v" class="mt-1 accent-ink">
                 <span><span class="block text-sm font-medium">{{ opt.t }}</span><span class="text-xs text-ink-muted">{{ opt.d }}</span></span>

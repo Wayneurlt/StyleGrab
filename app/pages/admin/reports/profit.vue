@@ -64,7 +64,7 @@ const SHRINK: Record<string, string> = { DAMAGE: 'Damaged', LOSS: 'Lost / stolen
 
       <UiCard title="Shrinkage" subtitle="Stock written off as damaged or lost in this range, valued at average cost">
         <UiEmpty v-if="!data.shrinkage.length" title="No damage or loss recorded" />
-        <div v-else class="grid gap-3 sm:grid-cols-2">
+        <div v-else class="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div v-for="s in data.shrinkage" :key="s.type" class="rounded-2xl bg-sand-50 p-4">
             <p class="text-[13px] text-ink-soft">{{ SHRINK[s.type] ?? s.type }}</p>
             <p class="num mt-2 text-xl font-semibold">{{ money(s.value) }}</p>

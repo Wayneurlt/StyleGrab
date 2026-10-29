@@ -79,7 +79,7 @@ const points = computed(() => (data.value?.byDay ?? []).map(d => ({ label: d.day
         <UiEmpty v-else title="No sales in this range" />
       </UiCard>
 
-      <div class="grid gap-5 xl:grid-cols-[2fr_3fr]">
+      <div class="grid grid-cols-1 gap-5 xl:grid-cols-[2fr_3fr]">
         <UiCard title="Top products">
           <UiEmpty v-if="!data.byProduct.length" title="No products sold" />
           <div v-else class="overflow-x-auto">

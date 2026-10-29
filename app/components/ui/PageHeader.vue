@@ -16,7 +16,7 @@ defineProps<{ title: string, subtitle?: string, crumbs?: { label: string, to?: s
           </li>
         </ol>
       </nav>
-      <h1 class="truncate font-display text-[1.9rem] font-semibold leading-tight text-ink md:text-display">{{ title }}</h1>
+      <h1 class="break-words font-display text-[1.75rem] sm:truncate sm:text-[1.9rem] font-semibold leading-tight text-ink md:text-display">{{ title }}</h1>
       <p v-if="subtitle" class="mt-2 text-sm text-ink-soft/80">{{ subtitle }}</p>
     </div>
     <div class="flex flex-wrap items-center gap-2"><slot /></div>

@@ -58,7 +58,7 @@ async function commit() {
       <a class="inline-flex h-11 items-center gap-2 rounded-full border border-sand-200 bg-white/90 px-5 text-sm font-medium text-ink shadow-lift hover:bg-white" href="/api/admin/inventory/import-template" download><Download class="size-4" aria-hidden="true" />Template</a>
     </UiPageHeader>
 
-    <div class="grid gap-5 xl:grid-cols-[1fr_2fr]">
+    <div class="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_2fr]">
       <UiCard title="How it works">
         <ol class="list-decimal space-y-2 pl-5 text-sm text-ink-soft">
           <li>One row per variant. Rows with the same <code>category_code</code> and <code>product_name</code> become one product.</li>

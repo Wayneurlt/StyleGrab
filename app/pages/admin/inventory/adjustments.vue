@@ -116,7 +116,7 @@ const tone = (s: string) => (s === 'APPLIED' ? 'success' : s === 'REJECTED' ? 'd
 
     <UiModal v-model:open="open" title="New stock adjustment" size="lg">
       <div class="space-y-4">
-        <div class="grid gap-4 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <UiField id="adj-reason" label="Reason" required>
             <select id="adj-reason" v-model="reason" class="field">
               <option v-for="(label, key) in ADJUSTMENT_REASON_LABELS" :key="key" :value="key">{{ label }}</option>

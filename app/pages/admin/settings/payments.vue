@@ -86,7 +86,7 @@ async function save() {
     </UiCard>
 
     <UiModal v-model:open="open" :title="editingId ? 'Edit payment method' : 'Add payment method'" size="lg">
-      <form id="pm-form" class="grid gap-4 sm:grid-cols-2" novalidate @submit.prevent="save">
+      <form id="pm-form" class="grid grid-cols-1 gap-4 sm:grid-cols-2" novalidate @submit.prevent="save">
         <UiField id="pm-name" label="Name" required><input id="pm-name" v-model="form.name" class="field" maxlength="60" placeholder="e.g. M-Pesa Till"></UiField>
         <UiField id="pm-code" label="Code" required :hint="editingId ? 'Codes cannot change' : 'Short unique code, e.g. MPESA_TILL'">
           <input id="pm-code" v-model="form.code" class="field font-mono uppercase" maxlength="20" :disabled="!!editingId">

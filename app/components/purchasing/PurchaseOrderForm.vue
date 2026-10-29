@@ -44,7 +44,7 @@ function submit() {
 <template>
   <form class="space-y-5" novalidate @submit.prevent="submit">
     <UiCard title="Details">
-      <div class="grid gap-4 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
         <UiField id="po-supplier" label="Supplier" required>
           <select id="po-supplier" v-model="form.supplierId" class="field">
             <option value="" disabled>Choose a supplier</option>

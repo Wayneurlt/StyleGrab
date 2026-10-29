@@ -101,7 +101,7 @@ async function saveNotes() {
         Replacement sale for return {{ order.exchangedFrom.number }} on order
         <NuxtLink :to="`/admin/orders/${order.exchangedFrom.order.id}`" class="font-medium underline">{{ order.exchangedFrom.order.number }}</NuxtLink>
       </p>
-      <div class="grid gap-5 xl:grid-cols-[1.6fr_1fr]">
+      <div class="grid grid-cols-1 gap-5 xl:grid-cols-[1.6fr_1fr]">
         <div class="min-w-0 space-y-5">
           <UiCard title="Items" subtitle="Prices and names as recorded at the time of sale">
             <div class="overflow-x-auto">

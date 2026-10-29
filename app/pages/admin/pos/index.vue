@@ -139,7 +139,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 </script>
 
 <template>
-  <div class="grid gap-6 xl:grid-cols-[1fr_420px]">
+  <div class="grid grid-cols-1 gap-6 xl:grid-cols-[1fr_420px]">
     <!-- ───────── Products ───────── -->
     <section class="min-w-0">
       <div class="flex flex-wrap items-end justify-between gap-3">

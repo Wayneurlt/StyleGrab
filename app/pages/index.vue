@@ -62,39 +62,59 @@ const channels = computed(() => [
 <template>
   <div>
     <!-- ───────── Hero slideshow ───────── -->
-    <section v-if="slides.length" class="px-3 pt-3 sm:px-5" aria-roledescription="carousel" aria-label="Featured products" @mouseenter="hovering = true" @mouseleave="hovering = false">
-      <div class="relative h-[78vh] min-h-[520px] overflow-hidden rounded-[2rem] bg-coal">
-        <TransitionGroup enter-from-class="opacity-0" leave-to-class="opacity-0" enter-active-class="transition-opacity duration-1000" leave-active-class="transition-opacity duration-1000">
-          <div v-for="(s, i) in slides" v-show="i === active" :key="s.id" class="absolute inset-0" role="group" aria-roledescription="slide" :aria-label="`${i + 1} of ${slides.length}: ${s.name}`">
-            <!-- Phones: the photo fills the panel (portrait photos suit portrait screens). -->
-            <img :src="`/media/${s.images[0]!.key}`" :alt="s.images[0]!.alt || s.name" class="size-full object-cover lg:hidden" :class="i === active ? 'animate-ken-burns' : ''" :loading="i === 0 ? 'eager' : 'lazy'">
-            <!-- Desktop: a blurred wash of the same photo fills the wide panel… -->
-            <img :src="`/media/${s.images[0]!.key}`" alt="" aria-hidden="true" class="absolute inset-0 hidden size-full scale-125 object-cover opacity-70 blur-3xl saturate-150 lg:block" :loading="i === 0 ? 'eager' : 'lazy'">
-            <div class="absolute inset-0 bg-gradient-to-r from-coal/90 via-coal/55 to-coal/20" />
-            <div class="absolute inset-0 bg-gradient-to-t from-coal/60 via-transparent to-transparent lg:hidden" />
-            <!-- …and the whole photo sits uncropped in a frame on the right. -->
-            <div class="absolute inset-y-10 right-10 hidden aspect-[4/5] overflow-hidden rounded-[1.75rem] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)] ring-1 ring-chalk/15 lg:block xl:right-16">
+    <!-- Phones: the photo fills a portrait panel with the text over it.
+         Desktop: an edge-to-edge split, black copy panel on the left and the photo full height on the right. -->
+    <section v-if="slides.length" class="px-3 pt-3 sm:px-5 lg:px-0 lg:pt-0" aria-roledescription="carousel" aria-label="Featured products" @mouseenter="hovering = true" @mouseleave="hovering = false">
+      <div class="relative h-[78svh] min-h-[520px] overflow-hidden rounded-[2rem] bg-coal lg:grid lg:h-[calc(100svh-112px)] lg:max-h-[860px] lg:min-h-[560px] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:rounded-none">
+        <!-- Photos -->
+        <div class="absolute inset-0 lg:relative lg:order-2">
+          <TransitionGroup enter-from-class="opacity-0" leave-to-class="opacity-0" enter-active-class="transition-opacity duration-1000" leave-active-class="transition-opacity duration-1000">
+            <div v-for="(s, i) in slides" v-show="i === active" :key="s.id" class="absolute inset-0 overflow-hidden" role="group" aria-roledescription="slide" :aria-label="`${i + 1} of ${slides.length}: ${s.name}`">
               <img :src="`/media/${s.images[0]!.key}`" :alt="s.images[0]!.alt || s.name" class="size-full object-cover" :class="i === active ? 'animate-ken-burns' : ''" :loading="i === 0 ? 'eager' : 'lazy'">
             </div>
-          </div>
-        </TransitionGroup>
+          </TransitionGroup>
+          <!-- Phones: darken the bottom so the text reads. Desktop: blend the photo's left edge into the black panel. -->
+          <div class="absolute inset-0 bg-gradient-to-t from-coal/95 via-coal/55 to-transparent lg:bg-gradient-to-r lg:from-coal lg:via-coal/0 lg:via-25% lg:to-transparent" />
+        </div>
 
-        <div class="relative flex h-full flex-col justify-end px-7 pb-20 sm:px-12 sm:pb-24 lg:justify-center lg:pb-10 lg:pl-16 xl:pl-24">
+        <!-- Copy -->
+        <div class="relative flex h-full flex-col justify-end px-7 pb-24 sm:px-12 sm:pb-28 lg:order-1 lg:justify-center lg:pb-0 lg:pl-[max(2.5rem,calc((100vw-1200px)/2+1.25rem))] lg:pr-10">
+          <div class="pointer-events-none absolute -left-32 top-1/4 hidden size-[26rem] rounded-full bg-accent/15 blur-3xl lg:block" aria-hidden="true" />
           <Transition mode="out-in" enter-from-class="translate-y-4 opacity-0" leave-to-class="-translate-y-2 opacity-0" enter-active-class="transition duration-700 ease-out" leave-active-class="transition duration-300">
-            <div v-if="slides[active]" :key="slides[active]!.id" class="max-w-xl text-chalk lg:max-w-[42%]">
-              <p class="text-[13px] font-semibold uppercase tracking-[0.25em] text-accent-light">{{ slides[active]!.category.name }}</p>
-              <h1 class="mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-6xl lg:text-7xl">{{ slides[active]!.name }}</h1>
-              <p class="num mt-4 text-[19px] text-chalk/80">{{ price(slides[active]!) }}</p>
+            <div v-if="slides[active]" :key="slides[active]!.id" class="relative max-w-xl text-chalk">
+              <p class="flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.25em] text-accent-light">
+                <span class="hidden h-px w-10 bg-accent-light/70 lg:block" aria-hidden="true" />{{ slides[active]!.category.name }}
+              </p>
+              <h1 class="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-6xl lg:text-[2.75rem] xl:text-[3.5rem]">{{ slides[active]!.name }}</h1>
+              <p class="num mt-4 text-[19px] text-chalk/75">{{ price(slides[active]!) }}</p>
               <div class="mt-8 flex flex-wrap items-center gap-3">
                 <NuxtLink :to="`/products/${slides[active]!.slug}`" class="btn-gold h-12 text-[15px]">Shop now <ArrowRight class="size-4" /></NuxtLink>
                 <NuxtLink :to="`/shop/${slides[active]!.category.slug}`" class="btn-outline-light h-12 text-[15px]">More {{ slides[active]!.category.name.toLowerCase() }}</NuxtLink>
               </div>
             </div>
           </Transition>
+
+          <!-- Desktop: thumbnails of every slide, the active one framed in gold with its progress bar -->
+          <div class="relative mt-14 hidden items-center gap-3 lg:flex">
+            <button
+              v-for="(s, i) in slides"
+              :key="s.id"
+              type="button"
+              class="group relative size-16 shrink-0 overflow-hidden rounded-xl ring-1 transition duration-300 xl:size-[72px]"
+              :class="i === active ? 'ring-2 ring-accent-light' : 'opacity-50 ring-chalk/20 hover:opacity-90'"
+              :aria-label="`Show ${s.name}`"
+              :aria-current="i === active"
+              @click="go(i)"
+            >
+              <img :src="`/media/${s.images[0]!.key}`" alt="" class="size-full object-cover" loading="lazy">
+              <span v-if="i === active" :key="`${active}-${playing}`" class="absolute inset-x-0 bottom-0 h-1 bg-accent-light" :class="playing ? 'origin-left animate-progress' : ''" />
+            </button>
+            <button type="button" class="ml-2 flex size-10 items-center justify-center rounded-full border border-chalk/25 text-chalk transition hover:border-accent-light hover:text-accent-light" :aria-label="playing ? 'Pause slideshow' : 'Play slideshow'" @click="playing = !playing"><component :is="playing ? Pause : Play" class="size-4" /></button>
+          </div>
         </div>
 
-        <!-- Controls -->
-        <div class="absolute inset-x-0 bottom-6 flex items-center justify-center gap-3">
+        <!-- Phones and tablets: compact controls along the bottom -->
+        <div class="absolute inset-x-0 bottom-6 flex items-center justify-center gap-3 lg:hidden">
           <button type="button" class="flex size-9 items-center justify-center rounded-full bg-chalk/15 text-chalk backdrop-blur-md transition hover:bg-chalk/30" aria-label="Previous slide" @click="go(active - 1)"><ChevronLeft class="size-4" /></button>
           <div class="flex items-center gap-2 rounded-full bg-chalk/15 px-3 py-2.5 backdrop-blur-md">
             <button v-for="(s, i) in slides" :key="s.id" type="button" class="h-1.5 overflow-hidden rounded-full bg-chalk/40 transition-all duration-500" :class="i === active ? 'w-8' : 'w-1.5'" :aria-label="`Go to slide ${i + 1}`" :aria-current="i === active" @click="go(i)">
@@ -153,7 +173,7 @@ const channels = computed(() => [
 
     <!-- ───────── Dark showcase band ───────── -->
     <section v-if="showcase" class="mt-28 px-3 sm:px-5">
-      <div class="relative mx-auto grid max-w-[1400px] items-center gap-10 overflow-hidden rounded-[2rem] bg-coal px-7 py-16 text-chalk sm:px-14 lg:grid-cols-2 lg:py-20">
+      <div class="relative mx-auto grid grid-cols-1 max-w-[1400px] items-center gap-10 overflow-hidden rounded-[2rem] bg-coal px-7 py-16 text-chalk sm:px-14 lg:grid-cols-2 lg:py-20">
         <div class="pointer-events-none absolute -right-24 -top-24 size-[28rem] rounded-full bg-accent/25 blur-3xl" aria-hidden="true" />
         <div class="relative" data-aos="fade-right">
           <p class="text-[13px] font-semibold uppercase tracking-[0.25em] text-accent-light">Signature</p>
@@ -176,7 +196,7 @@ const channels = computed(() => [
       <h2 class="text-[2rem] font-semibold leading-tight tracking-[-0.025em] sm:text-[2.75rem]" data-aos="fade-up">
         Why StyleGrab. <span class="text-ink-muted">Small range. Honest stock.</span>
       </h2>
-      <div class="mt-10 grid gap-4 md:grid-cols-3">
+      <div class="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
         <div v-for="(r, i) in reasons" :key="r.t" class="group rounded-[1.75rem] bg-sand-100 p-8 transition duration-500 hover:-translate-y-1 hover:shadow-gold" data-aos="fade-up" :data-aos-delay="i * 100">
           <span class="flex size-12 items-center justify-center rounded-2xl bg-coal text-accent-light transition group-hover:scale-110"><component :is="r.icon" class="size-6" stroke-width="1.6" /></span>
           <p class="mt-8 text-[21px] font-semibold leading-snug tracking-[-0.015em]">{{ r.t }}</p>
@@ -205,7 +225,7 @@ const channels = computed(() => [
     <!-- ───────── Order your way ───────── -->
     <section class="mx-auto mt-28 max-w-[1200px] px-5">
       <StoreSectionHeading title="Order your way." subtitle="Every channel draws from the same stock, so what we confirm is what we have." />
-      <div class="mt-12 grid gap-10 text-center md:grid-cols-3">
+      <div class="mt-12 grid grid-cols-1 gap-10 text-center md:grid-cols-3">
         <div v-for="(c, i) in channels" :key="c.t" data-aos="fade-up" :data-aos-delay="i * 100">
           <span class="mx-auto flex size-14 items-center justify-center rounded-full border border-accent/40 text-accent-dark"><component :is="c.icon" class="size-6" stroke-width="1.5" /></span>
           <p class="mt-5 text-[19px] font-semibold tracking-[-0.01em]">{{ c.t }}</p>
